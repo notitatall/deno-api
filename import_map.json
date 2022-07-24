@@ -5,8 +5,9 @@
     "preact/": "https://esm.sh/preact@10.8.2/",
     "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.8.2",
     "asserts": "https://deno.land/std@0.149.0/testing/asserts.ts",
-    "mock": "https://deno.land/std@0.149.0/testing/mock.ts",
+    "sinon": "https://cdn.skypack.dev/sinon@11.1.2?dts",
     "snapshot": "https://deno.land/std@0.149.0/testing/snapshot.ts",
-    "time": "https://deno.land/std@0.149.0/testing/time.ts"
+    "time": "https://deno.land/std@0.149.0/testing/time.ts",
+    "bdd": "https://deno.land/std@0.149.0/testing/bdd.ts"
   }
 }
