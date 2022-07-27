@@ -3,10 +3,12 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $0 from "./routes/api/ping.ts";
+import * as $1 from "./routes/api/room/join.ts";
 
 const manifest = {
   routes: {
     "./routes/api/ping.ts": $0,
+    "./routes/api/room/join.ts": $1,
   },
   islands: {},
   baseUrl: import.meta.url,
