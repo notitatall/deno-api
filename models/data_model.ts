@@ -5,8 +5,9 @@ export interface User {
 
 export interface Room {
   gid: string;
+  name: string;
   messages: Message[];
-  members: Set<string>;
+  members: string[];
 }
 
 export interface Message {

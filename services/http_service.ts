@@ -1,4 +1,4 @@
 export interface HttpService {
   fetchJson<T>(request: Request): Promise<T>;
-  createJsonResponse<T>(data: T): Response; 
+  createJsonResponse<T>(status: number, data: T): Response;
 }

@@ -6,8 +6,9 @@ export class HttpServiceImpl implements HttpService {
     return (await response.json()) as T;
   };
 
-  createJsonResponse = <T>(data: T): Response =>
+  createJsonResponse = <T>(status: number, data: T): Response =>
     new Response(JSON.stringify(data), {
+      status,
       headers: { "Content-Type": "application/json" },
     });
 }

@@ -1,14 +1,13 @@
 import { RoomRepo } from "./room_repo.ts";
 import { Room, Message } from "../models/data_model.ts";
+import { room } from "../testing/fixtures/data_model_fixtures.ts";
 
 export class RoomRepoImpl implements RoomRepo {
   // gid -> Room
   private _rooms: Record<string, Room> = {
-    "123": {
-        gid: "123",
-        messages: [],
-        members: new Set<string>()
-    }
+    "123": room({ gid: "123" }),
+    "098": room({ gid: "098" }),
+    "789": room({ gid: "789" }),
   };
 
   get = (gid: string): Room | undefined => this._rooms[gid];
@@ -29,17 +28,21 @@ export class RoomRepoImpl implements RoomRepo {
   addMember = (roomGid: string, userGid: string): string => {
     const room = this._getOrThrow(roomGid);
 
-    const members = room.members.add(userGid);
+    // use a Set to enforce uniqueness.
+    const membersSet = new Set(room.members);
 
-    return this.put({ ...room, members });
+    return this.put({ ...room, members: Array.from(membersSet.add(userGid)) });
   };
 
   removeMember = (roomGid: string, userGid: string): string => {
     const room = this._getOrThrow(roomGid);
 
-    room.members.delete(userGid);
+    // use a Set to enforce uniqueness.
+    const membersSet = new Set(room.members);
 
-    return this.put(room);
+    membersSet.delete(userGid);
+
+    return this.put({ ...room, members: Array.from(membersSet) });
   };
 
   private _getOrThrow = (gid: string): Room => {

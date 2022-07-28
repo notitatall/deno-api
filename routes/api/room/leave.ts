@@ -13,7 +13,7 @@ export const handler: Handlers<string> = {
 
     const requestBody = (await request.json()) as MembershipChangeRequestBody;
 
-    roomRepo.addMember(requestBody.roomGid, requestBody.userGid);
+    roomRepo.removeMember(requestBody.roomGid, requestBody.userGid);
 
     const room = roomRepo.get(requestBody.roomGid);
     return http.createJsonResponse(200, room);
